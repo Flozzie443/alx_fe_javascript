@@ -1,74 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Quote Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
-      margin-bottom: 10px;
-    }
-    #quoteDisplay {
-      margin: 20px 0;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      min-height: 60px;
-      font-size: 18px;
-      line-height: 1.4;
-    }
-    .adder {
-      margin-top: 20px;
-    }
-    .adder input {
-      display: block;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background: #2563eb;
-      color: white;
-    }
-    select {
-      padding: 5px;
-      margin-right: 10px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Quote Generator with Storage</title>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
-
-  <!-- Category filter and button -->
-  <div>
-    <label for="categoryFilter">Filter by category:</label>
-    <select id="categoryFilter">
-      <option value="__ALL__">All</option>
-    </select>
-    <button id="newQuote">Show New Quote</button>
-  </div>
-
-  <!-- Quote display -->
+  
   <div id="quoteDisplay"></div>
-
-  <!-- Add new quote -->
-  <div class="adder">
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button onclick="addQuote()">Add Quote</button>
-  </div>
-
+  
+  <button onclick="displayRandomQuote()">Show New Quote</button>
+  <br><br>
+  
+  <input type="text" id="quoteText" placeholder="Enter quote">
+  <input type="text" id="quoteCategory" placeholder="Enter category">
+  <button onclick="addQuote()">Add Quote</button>
+  
+  <br><br>
+  <button onclick="exportToJsonFile()">Export Quotes</button>
+  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  
   <script src="script.js"></script>
 </body>
 </html>
+
+
 
