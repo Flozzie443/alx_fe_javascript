@@ -3,63 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Quote Generator with Storage</title>
-</head>
-<body>
-    <h1>Dynamic Quote Generator</h1>
-
-    <div id="quoteDisplay">Your quotes will appear here</div>
-    <br>
-
-    <button onclick="displayRandomQuote()">Show New Quote</button>
-    <br><br>
-
-    <input type="text" id="quoteText" placeholder="Enter quote">
-    <input type="text" id="quoteCategory" placeholder="Enter category">
-    <button onclick="addQuote()">Add Quote</button>
-    <br><br>
-
-    <button onclick="exportToJsonFile()">Export Quotes</button>
-    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-    
-    <script src="script.js"></script><script src="script.js"></script> <script src="script.js"></script>
-</body><div id="notification" style="display:none; background:yellow; padding:10px; margin-bottom:10px;"></div>
-
-<div>
-    <input id="quote-text" type="text" placeholder="Enter quote">
-    <input id="quote-author" type="text" placeholder="Enter author">
-    <button id="add-quote-btn">Add Quote</button>
-</div>
-
-<div id="quote-list" style="margin-top:20px;"></div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Quote Generator with Sync</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dynamic Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Dynamic Quote Generator</h1>
-        <div id="quote-box">
-            <p id="quote-text">Click the button to load a quote.</p>
+        <div class="quote-box">
+            <p id="quote">Click the button to load a quote!</p>
+            <p id="author"></p>
         </div>
         <button id="new-quote">Get New Quote</button>
-        <button id="sync-quotes">Sync with Server</button>
-        <p id="status"></p>
+        <button id="sync-quotes">Sync Quotes</button>
+        <div id="notification" class="hidden"></div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-
-</html>
-
-
-</body>>
-
-
-
-
-
