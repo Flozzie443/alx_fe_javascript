@@ -139,5 +139,77 @@ window.onload = function() {
     document.getElementById("quoteDisplay").innerText = `"${quote.text}" - ${quote.category}`;
   }
 };
+let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+let lastSelectedCategory = localStorage.getItem('selectedCategory') || 'all';
+
+function saveQuotes() {
+  localStorage.setItem('quotes', JSON.stringify(quotes));
+}
+
+function addQuote() {
+  const text = document.getElementById('quoteText').value;
+  const author = document.getElementById('quoteAuthor').value;
+  const category = document.getElementById('quoteCategory').value;
+
+  if (text && author && category) {
+    quotes.push({ text, author, category });
+    saveQuotes();
+    populateCategories();
+    displayQuotes();
+    document.getElementById('quoteText').value = '';
+    document.getElementById('quoteAuthor').value = '';
+    document.getElementById('quoteCategory').value = '';
+  } else {
+    alert('Please fill in all fields.');
+  }
+}
+
+function populateCategories() {
+  const categoryDropdown = document.getElementById('categoryFilter');
+  const categories = ['all', ...new Set(quotes.map(q => q.category))];
+
+  // Clear existing options
+  categoryDropdown.innerHTML = '';
+
+  // Populate options
+  categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    if (cat === lastSelectedCategory) option.selected = true;
+    categoryDropdown.appendChild(option);
+  });
+}
+
+function filterQuotes() {
+  const selectedCategory = document.getElementById('categoryFilter').value;
+  lastSelectedCategory = selectedCategory;
+  localStorage.setItem('selectedCategory', selectedCategory);
+  displayQuotes();
+}
+
+function displayQuotes() {
+  const container = document.getElementById('quoteContainer');
+  container.innerHTML = '';
+
+  const selectedCategory = document.getElementById('categoryFilter').value;
+
+  let filteredQuotes = selectedCategory === 'all'
+    ? quotes
+    : quotes.filter(q => q.category === selectedCategory);
+
+  filteredQuotes.forEach((quote, index) => {
+    const div = document.createElement('div');
+    div.classList.add('quote');
+    div.innerHTML = `<p>"${quote.text}" - ${quote.author}</p><p><em>${quote.category}</em></p>`;
+    container.appendChild(div);
+  });
+}
+
+// On page load
+document.addEventListener('DOMContentLoaded', () => {
+  populateCategories();
+  displayQuotes();
+});
 
 
